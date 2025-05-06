@@ -35,12 +35,17 @@ const App = () => {
   const handleToggle = () => {
     setShowAddFriend(show => !show)
   }
+
+  const handleAddNewFriend = (e) => {
+    setFriends(friends => [...friends, e])
+    setShowAddFriend(false)
+  }
   return (
     <div className='app'>
       <div className='sidebar'>
 
         <FriendsList friends={friends} />
-        {showAddFriend && <FormAddFriend />}
+        {showAddFriend && <FormAddFriend onAddNewFriend={handleAddNewFriend} />}
         <Button onClick={handleToggle}>{showAddFriend ? 'Close' : 'Add Friend'}</Button>
       </div>
       <FormSplitBill />
